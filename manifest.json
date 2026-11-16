@@ -1,0 +1,20 @@
+{
+  "name": "MPF Eletrônicos",
+  "short_name": "MPF",
+  "description": "Tecnologia com qualidade — Fones, Smartphones, Tablets e muito mais!",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0e1a",
+  "theme_color": "#00d4ff",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
