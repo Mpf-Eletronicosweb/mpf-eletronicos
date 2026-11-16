@@ -179,7 +179,10 @@ a { text-decoration: none; color: inherit; }
   .slider { height: 400px; }
   .modal-body { grid-template-columns: 1fr; }
   .contato-grid { grid-template-columns: 1fr; }
-  .icon-btn span { display: none; }
+    .icon-btn span { 
+    display: inline !important; 
+    font-size: 0.8rem; /* Diminui um pouquinho a letra para caber na tela */
+  }
   .carrinho-item { grid-template-columns: 60px 1fr auto; }
   .carrinho-item img { width: 60px; height: 60px; }
   .carrinho-item-info h4 { font-size: .85rem; }
@@ -282,23 +285,27 @@ a { text-decoration: none; color: inherit; }
 }
 /* ========== AJUSTE FINO PARA CELULAR (RESPONSIVIDADE DO SLIDER) ========== */
 @media (max-width: 768px) {
+  /* Diminui o título do slider para caber na tela */
   .slide-text h2 { 
     font-size: 2rem !important; 
     margin-bottom: 10px !important;
   }
   
+  /* Diminui o subtítulo */
   .slide-text p { 
     font-size: 1rem !important; 
     margin-bottom: 20px !important;
   }
   
+  /* Afasta o texto das setas laterais */
   .slide-text {
-    padding: 0 50px !important;
+    padding: 0 50px !important; /* Dá um respiro nas laterais */
     left: 0 !important;
     width: 100% !important;
-    text-align: center !important;
+    text-align: center !important; /* Centraliza o texto no celular */
   }
   
+  /* Ajusta as setas para não cobrirem o texto */
   .slider-arrow {
     width: 40px !important;
     height: 40px !important;
@@ -307,10 +314,30 @@ a { text-decoration: none; color: inherit; }
   .slider-arrow.prev { left: 10px !important; }
   .slider-arrow.next { right: 10px !important; }
 
+  /* Deixa os botões do header (Login e Carrinho) um pouco mais próximos */
   .header-content {
     justify-content: space-between !important;
   }
   .header-actions {
     gap: 5px !important;
   }
+  /* ========== AJUSTES FINOS DE VISUAL (MOBILE E CORES) ========== */
+
+/* 1. Mostrar as palavras Login e Carrinho no celular */
+@media (max-width: 768px) {
+  .icon-btn {
+    padding: 8px 12px !important; /* Diminui um pouco o botão para caber */
+    gap: 5px !important;
+  }
+  .icon-btn span {
+    display: inline-block !important; /* Força a aparecer */
+    font-size: 0.8rem !important; /* Fonte menor para caber */
+  }
+}
+
+/* 2. Padronizar a cor "Eletrônicos" */
+.logo span {
+  color: #00d4ff !important; /* Azul forte (cyan) */
+  -webkit-text-fill-color: #00d4ff !important; /* Garante a cor no degradê */
+  font-weight: 700 !important;
 }
