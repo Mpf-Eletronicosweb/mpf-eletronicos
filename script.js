@@ -414,3 +414,63 @@ document.addEventListener('DOMContentLoaded', () => {
   atualizarContador(); atualizarBotaoLogin();
   console.log('✅ MPF Eletrônicos carregado com sucesso!');
 });
+// ============================================================
+// ========== CONTROLE DO PIX =================================
+// ============================================================
+
+window.abrirPix = function() {
+  if (carrinho.length === 0) {
+    if (typeof mostrarToast === 'function') mostrarToast('⚠️ Adicione itens no carrinho antes de pagar!', 'erro');
+    else alert('Adicione itens no carrinho antes de pagar!');
+    return;
+  }
+  fecharCarrinho(); // Fecha a tela do carrinho
+  document.getElementById('modalPix').style.display = 'flex'; // Abre a tela do PIX
+};
+
+window.fecharModalPix = function() {
+  document.getElementById('modalPix').style.display = 'none';
+  abrirCarrinho(); // Volta para o carrinho se fechar o PIX
+};
+
+document.getElementById('modalPix')?.addEventListener('click', (e) => { 
+  if (e.target.id === 'modalPix') fecharModalPix(); 
+});
+
+// Função para copiar a chave PIX
+window.copiarChavePix = function() {
+  const input = document.getElementById('chavePix');
+  if (!input) return;
+  
+  input.select();
+  input.setSelectionRange(0, 99999); // Para funcionar no celular
+  
+  try {
+    document.execCommand('copy');
+    if (typeof mostrarToast === 'function') mostrarToast('✅ Chave PIX copiada!');
+    const btn = document.getElementById('btnCopiarPix');
+    if (btn) {
+      btn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-copy"></i> Copiar';
+      }, 3000);
+    }
+  } catch (err) {
+    alert('Não foi possível copiar automaticamente. Por favor, selecione e copie manualmente.');
+  }
+};
+
+// Função para enviar no WhatsApp avisando que pagou
+window.confirmarPagamentoPix = function() {
+  const user = getUsuarioLogado();
+  let msg = `*💳 PEDIDO PAGO VIA PIX - MPF ELETRÔNICOS*\n\n`;
+  
+  if (user) {
+    msg += `*👤 CLIENTE:*\nNome: ${user.nome}\nTelefone: ${user.telefone}\n\n`;
+  }
+  
+  msg += `Olá! Acabei de realizar o pagamento do pedido via PIX. 😊\nSegue o comprovante em anexo.\n\nAguardo as instruções de entrega!`;
+  
+  window.open(`https://wa.me/${WHATSAPP_LOJA}?text=${encodeURIComponent(msg)}`, '_blank');
+  fecharModalPix();
+};
