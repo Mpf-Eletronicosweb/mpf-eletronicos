@@ -296,13 +296,27 @@ window.fazerLogin = function (e) {
   e.preventDefault();
   const email = document.getElementById('loginEmail').value.trim().toLowerCase();
   const senha = document.getElementById('loginSenha').value;
-  const usuario = getUsuarios().find(u => u.email === email && u.senha === senha);
-  if (!usuario) { alert('❌ E-mail ou senha incorretos.'); return; }
+  
+  const usuarios = getUsuarios();
+  // Procura o usuário pelo e-mail e senha
+  const usuario = usuarios.find(u => u.email === email && u.senha === senha);
+  
+  if (!usuario) { 
+    alert('❌ E-mail ou senha incorretos.'); 
+    return; 
+  }
+  
+  // Se achou, salva a sessão SEM a senha
   const { senha: _, ...userSemSenha } = usuario;
   salvarSessao(userSemSenha);
-  mostrarAreaLogado(userSemSenha); atualizarBotaoLogin();
+  
+  // Atualiza a tela
+  mostrarAreaLogado(userSemSenha); 
+  atualizarBotaoLogin();
+  renderizarProdutos(produtos);
+  
+  alert(`🎉 Bem-vindo(a) de volta, ${usuario.nome}!`);
 };
-
 window.fazerLogout = function () {
   if (!confirm('Deseja sair da conta?')) return;
   limparSessao(); fecharModalLogin(); atualizarBotaoLogin(); mostrarToast('👋 Você saiu da conta.');
