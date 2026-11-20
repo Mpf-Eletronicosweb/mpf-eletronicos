@@ -240,16 +240,29 @@
       </form>
 
       <!-- FORM CADASTRO -->
+      <      <!-- FORM CADASTRO -->
       <form id="formCadastro" class="auth-form" style="display:none;" onsubmit="fazerCadastro(event)">
         <h2>Criar conta 🚀</h2>
-        <input type="text" id="cadNome" placeholder="Nome completo" required>
+        
+        <!-- Abas Consumidor / Lojista -->
+        <div class="auth-tabs" style="margin-bottom: 15px; background: transparent; padding: 0;">
+          <button type="button" class="auth-tab active" id="tabConsumidor" onclick="mudarTipoConta('consumidor')">Consumidor</button>
+          <button type="button" class="auth-tab" id="tabLojista" onclick="mudarTipoConta('lojista')">Lojista</button>
+        </div>
+
+        <input type="hidden" id="tipoConta" value="consumidor">
+
+        <input type="text" id="cadNome" placeholder="Nome completo / Nome Fantasia" required>
         <input type="email" id="cadEmail" placeholder="E-mail" required>
         <input type="tel" id="cadTelefone" placeholder="Telefone / WhatsApp" required>
-        <input type="password" id="cadSenha" placeholder="Senha (mín. 4)" minlength="4" required>
-        <input type="password" id="cadSenha2" placeholder="Confirmar senha" minlength="4" required>
+        
+        <!-- Campo CNPJ (Só aparece se for Lojista) -->
+        <input type="tel" id="cadCnpj" placeholder="CNPJ (Apenas números)" style="display:none;" maxlength="14" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+        
+        <input type="password" id="cadSenha" placeholder="Senha (mín. 8 caracteres)" minlength="8" required>
+        <input type="password" id="cadSenha2" placeholder="Confirmar senha" minlength="8" required>
         <button class="btn-primary" type="submit">Criar conta</button>
       </form>
-
       <!-- ESQUECI A SENHA -->
       <form id="formRecuperar" class="auth-form" style="display:none;" onsubmit="recuperarSenha(event)">
         <h2>Recuperar Senha 🔑</h2>
@@ -298,7 +311,7 @@
 
       <div class="pix-qrcode-box">
         <!-- Se você tiver a imagem do QR Code, troque o 'src' abaixo pelo caminho da sua imagem -->
-<img src="qrcode-pix.png" alt="QR Code PIX" style="width: 180px; height: 180px; border-radius: 10px;">
+<img src="icons/qrcode-pix.png" alt="QR Code PIX" style="width: 180px; height: 180px; border-radius: 10px;">
         <div class="pix-copia-cola">
         <label>Chave PIX (Aleatória):</label>
         <div class="input-group">

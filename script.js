@@ -1,4 +1,4 @@
-// ============================================================
+  // ============================================================
 // ========== MPF ELETRÔNICOS - SCRIPT FINAL ==================
 // ============================================================
 
@@ -473,4 +473,30 @@ window.confirmarPagamentoPix = function() {
   
   window.open(`https://wa.me/${WHATSAPP_LOJA}?text=${encodeURIComponent(msg)}`, '_blank');
   fecharModalPix();
+};
+// ========== LÓGICA DE LOJISTA (CORRIGIDO) ==========
+window.mudarTipoConta = function(tipo) {
+  console.log("Trocando para:", tipo); // Isso vai aparecer no console (F12) se o clique funcionar!
+  
+  const inputCnpj = document.getElementById('cadCnpj');
+  const tabConsumidor = document.getElementById('tabConsumidor');
+  const tabLojista = document.getElementById('tabLojista');
+  const inputTipo = document.getElementById('tipoConta');
+  
+  if (!inputTipo) {
+    console.error("Input hidden tipoConta não encontrado no HTML!");
+    return;
+  }
+  
+  inputTipo.value = tipo;
+
+  if (tipo === 'lojista') {
+    if (inputCnpj) inputCnpj.style.display = 'block';
+    if (tabLojista) tabLojista.classList.add('active');
+    if (tabConsumidor) tabConsumidor.classList.remove('active');
+  } else {
+    if (inputCnpj) inputCnpj.style.display = 'none';
+    if (tabConsumidor) tabConsumidor.classList.add('active');
+    if (tabLojista) tabLojista.classList.remove('active');
+  }
 };

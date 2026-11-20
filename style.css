@@ -341,3 +341,72 @@ a { text-decoration: none; color: inherit; }
   -webkit-text-fill-color: #00d4ff !important; /* Garante a cor no degradê */
   font-weight: 700 !important;
 }
+}
+/* ========== ESTILOS PARA AS ABAS DE CADASTRO (LOJISTA/CONSUMIDOR) ========== */
+.auth-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  background: #0f1523;
+  padding: 6px;
+  border-radius: 12px;
+}
+
+.auth-tab {
+  flex: 1;
+  background: transparent;
+  color: #7a8599;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+.auth-tab.active {
+  background: linear-gradient(135deg, #00d4ff, #0077ff);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0,212,255,0.35);
+}
+
+/* Badge "Tabela Lojista" nos produtos */
+.badge-lojista {
+  display: inline-block;
+  background: #00d4ff;
+  color: #0a0e1a;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Botão de orçamento */
+.btn-orcamento {
+  width: 100%;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: .3s;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 0.9rem;
+}
+
+.btn-orcamento:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(37,211,102,.4);
+}
